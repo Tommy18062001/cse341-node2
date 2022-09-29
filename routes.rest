@@ -5,5 +5,5 @@ GET http://localhost:3000/students
 GET http://localhost:3000/students/6333f122b0e369552a157abf
 
 ### 
-POST http://localhost:3000/
+POST http://localhost:3000/students
 
