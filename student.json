@@ -1,0 +1,27 @@
+[{
+  "firstName": "Tommy",
+  "lastName": "Sylver",
+  "startDate": "2020",
+  "email": "tommy@gmail.com",
+  "major": "Applied Technology",
+  "courses": ["CSE341", "WDD130"],
+  "isGraduated": false
+},
+{
+    "firstName": "Jennifer",
+    "lastName": "SYlvianne",
+    "startDate": "2021",
+    "email": "jenny@gmail.com",
+    "major": "Business",
+    "courses": ["Excel"],
+    "isGraduated": false
+  },
+  {
+    "firstName": "Jacob",
+    "lastName": "Nir",
+    "startDate": "2010",
+    "email": "nir@gmail.com",
+    "major": "Applied Technology",
+    "courses": [],
+    "isGraduated": true
+  }]
