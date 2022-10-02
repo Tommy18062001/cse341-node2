@@ -11,9 +11,9 @@ const saveStudent = async (req, res, next) => {
         "isGraduated": "boolean"
     };
 
-    await validator(req.body, validationRule, {}, (err, status) => {
+    validator(req.body, validationRule, {}, (err, status) => {
         if (!status) {
-            res.status(400)
+            res.status(412)
                 .send({
                     success: false,
                     message: 'Validation failed',
@@ -22,7 +22,7 @@ const saveStudent = async (req, res, next) => {
         } else {
             next();
         }
-    }).catch( err => console.log(err))
+    });
 }
 
 module.exports = {

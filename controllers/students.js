@@ -1,7 +1,7 @@
 const Student = require('../modules/student');
 const ObjectId = require("mongodb").ObjectId;
 
-// GET all student 
+// ---------------------------------------------------- GET all student 
 const getStudents = async (req, res) => {
     Student.find()
       .then((studentList) => {
@@ -12,13 +12,12 @@ const getStudents = async (req, res) => {
       });
   };
   
-// GET a specific student
+// ---------------------------------------------------- GET a specific student
 const getStudent = async (req, res) => {
 
   if (!ObjectId.isValid(req.params.id)) {
     res.status(400).json("Must use a valid student id to find a student.")
   }
-
   const studentId = req.params.id;
 
   Student.find({ _id: studentId })
@@ -30,7 +29,7 @@ const getStudent = async (req, res) => {
     });
 };
   
-// POST REQUEST
+// --------------------------------------------------- POST REQUEST
 const createStudent = async (req, res) => {
   const student = new Student({
     firstName: req.body.firstName,
@@ -53,7 +52,7 @@ const createStudent = async (req, res) => {
 };
 
 
-// PUT REQUEST
+// ---------------------------------------------------- PUT REQUEST
 const updateStudent = async (req, res) => {
 // validate the mongodb id 
 if (!ObjectId.isValid(req.params.id)) {
@@ -73,7 +72,7 @@ Student.findOne({ _id: studentId })
     student.courses = req.body.courses;
     student.isGraduated = req.body.isGraduated;
 
-    Contact.updateOne({ _id: studentId }, student)
+    Student.updateOne({ _id: studentId }, student)
       .then((result) => {
         // 204 if the test was successfully
         res.status(204).json({message: "Update successfull"});
