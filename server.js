@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require("body-parser");
 const routes = require('./routes');
+const passport = require("passport");
+const session = require('express-session');
 
 const dotenv = require('dotenv'); // access env variables
 dotenv.config()
@@ -25,6 +27,9 @@ mongoose.connect(process.env.mongodb_uri,
 const app = express()
 const port = 3000
 
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+
 app
 .use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDoc))
 .use(bodyParser.json())
@@ -35,7 +40,23 @@ app
     res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
     next();
   })
-.use('/', routes)
+
+// insert passport
+
+require("./config/passport");
+
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { secure: true }
+}))
+
+app.use(passport.initialize())
+app.use(passport.session())
+
+  
+app.use('/', routes)
 
 process.on('uncaughtException', (err, origin) => {
     console.log(process.stderr.fd, `Caught exception: ${err}\n` + `Exception origin: ${origin}`);
