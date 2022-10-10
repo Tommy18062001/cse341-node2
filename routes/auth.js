@@ -2,9 +2,8 @@ const express = require("express");
 const router = express.Router();
 const passport = require("passport");
 const controller = require("../controllers/auth");
-const isAuth = require('../routes/authVerification').isAuth;
 
-router.get('/home', isAuth, (req, res, next) => {
+router.get('/home', (req, res, next) => {
     const form = '<h1>You are successfully logged in</h1>\
             <br><a href="/students">Check the students List</a>\
             <br><br><a href="/logout">Log Out</a>'
